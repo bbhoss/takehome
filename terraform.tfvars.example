@@ -1,0 +1,5 @@
+access_key = "ACCESS_KEY_GOES_HERE"
+secret_key = "SECRET_KEY_GOES_HERE"
+region = "us-east-1"
+key_path = "~/.ssh/aws_key_file"
+key_name = "your_key_name"
