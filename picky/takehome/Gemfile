@@ -17,7 +17,7 @@ gem 'procrastinate', '~> 0.4' # Parallel indexing
 
 # Required by your project.
 #
-gem 'unicorn'
+gem 'puma'
 
 group :test do
   gem 'rspec'
