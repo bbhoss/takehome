@@ -30,6 +30,6 @@ resource "aws_instance" "picky" {
   key_name = "${var.key_name}"
   subnet_id = "${aws_subnet.main.id}"
   security_groups = ["${aws_security_group.default.id}"]
-  count = 1
+  count = 2
   associate_public_ip_address = true
 }

@@ -1,5 +1,5 @@
 ---
-- hosts: picky
+- hosts: picky*
   tasks:
     - name: Install Ruby and its headers
       yum: name={{ item }} state=latest
