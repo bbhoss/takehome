@@ -1,0 +1,84 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (3.2.21)
+      activesupport (= 3.2.21)
+      builder (~> 3.0.0)
+    activerecord (3.2.21)
+      activemodel (= 3.2.21)
+      activesupport (= 3.2.21)
+      arel (~> 3.0.2)
+      tzinfo (~> 0.3.29)
+    activesupport (3.2.21)
+      i18n (~> 0.6, >= 0.6.4)
+      multi_json (~> 1.0)
+    arel (3.0.3)
+    builder (3.0.4)
+    diff-lcs (1.2.5)
+    google_hash (0.8.7)
+      sane (~> 0)
+    i18n (0.7.0)
+    kgio (2.9.3)
+    multi_json (1.11.0)
+    os (0.9.6)
+    picky (4.27.1)
+      activesupport
+      google_hash (~> 0.8)
+      multi_json (~> 1.3)
+      rack_fast_escape (~> 2009.0)
+    procrastinate (0.6.0)
+      state_machine (~> 1.1)
+    rack (1.6.0)
+    rack-protection (1.5.3)
+      rack
+    rack_fast_escape (2009.06.24)
+      url_escape
+    raindrops (0.13.0)
+    rake (10.4.2)
+    rspec (3.2.0)
+      rspec-core (~> 3.2.0)
+      rspec-expectations (~> 3.2.0)
+      rspec-mocks (~> 3.2.0)
+    rspec-core (3.2.3)
+      rspec-support (~> 3.2.0)
+    rspec-expectations (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-mocks (3.2.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.2.0)
+    rspec-support (3.2.2)
+    sane (0.25.8)
+      os (~> 0)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    state_machine (1.2.0)
+    text (1.3.1)
+    tilt (1.4.1)
+    tzinfo (0.3.43)
+    unicorn (4.8.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+    url_escape (2009.06.24)
+    yajl-ruby (1.2.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activerecord (~> 3)
+  multi_json
+  picky (~> 4.0)
+  procrastinate (~> 0.4)
+  rack
+  rack_fast_escape (= 2009.06.24)
+  rake
+  rspec
+  sinatra
+  text
+  tilt (~> 1.4.1)
+  unicorn
+  yajl-ruby (~> 1.2)
