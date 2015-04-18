@@ -6,10 +6,18 @@ resource "aws_elb" "main-picky-elb" {
   security_groups = ["${aws_security_group.default.id}"]
 
   listener {
-    instance_port = 80
+    instance_port = 8000
     instance_protocol = "http"
     lb_port = 80
     lb_protocol = "http"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 3
+    target = "HTTP:8000/books?query=the"
+    interval = 10
   }
 
   instances = ["${aws_instance.picky.*.id}"]
@@ -17,15 +25,11 @@ resource "aws_elb" "main-picky-elb" {
 
 
 resource "aws_instance" "picky" {
-  connection {
-    user = "centos"
-    key_file = "${var.key_path}"
-  }
-
-  instance_type = "t2.micro"
+  instance_type = "t2.medium"
   ami = "ami-96a818fe"
   key_name = "${var.key_name}"
   subnet_id = "${aws_subnet.main.id}"
   security_groups = ["${aws_security_group.default.id}"]
   count = 1
+  associate_public_ip_address = true
 }
