@@ -28,12 +28,4 @@ resource "aws_instance" "picky" {
   subnet_id = "${aws_subnet.main.id}"
   security_groups = ["${aws_security_group.default.id}"]
   count = 1
-
-  provisioner "remote-exec" {
-    inline = [
-        "sudo yum -y install epel-release",
-        "sudo yum -y install nginx",
-        "sudo systemctl start nginx.service"
-    ]
-  }
 }
