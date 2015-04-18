@@ -1,0 +1,15 @@
+[Unit]
+Description=Picky Puma
+
+[Service]
+User=picky
+WorkingDirectory=/var/local/picky/server/takehome
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=picky-puma
+ExecStart=/usr/local/bin/bundle exec "puma -b tcp://0.0.0.0:8000 -w 3"
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
