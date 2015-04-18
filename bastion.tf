@@ -1,6 +1,11 @@
 resource "aws_eip" "bastion" {
     vpc = true
     instance = "${aws_instance.bastion.id}"
+
+    # Setup the new ssh config file for the bastion from the template
+    provisioner "local-exec" {
+      command = "sed s/BASTION_HOST_IP/${aws_eip.bastion.public_ip}/ < ssh.config.template > ssh.config "
+    }
 }
 
 resource "aws_instance" "bastion" {
