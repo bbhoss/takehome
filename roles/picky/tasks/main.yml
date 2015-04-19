@@ -1,0 +1,30 @@
+---
+- name: Install Ruby and its headers
+  yum: name={{ item }} state=latest
+  with_items:
+    - ruby
+    - ruby-devel
+    - openssl-devel
+
+- name: install the 'Development tools' so we can install sparsehash
+  yum: name="@Development tools" state=present
+
+- name: Install bundler
+  gem: name=bundler user_install=no
+
+- name: Create picky user
+  user: name=picky system=yes shell=/usr/sbin/nologin home=/var/local/picky
+
+- name: Copy picky server and data
+  copy: src=picky/takehome dest=/var/local/picky/server owner=picky
+
+- name: Bundle picky server
+  shell: /usr/local/bin/bundle install --deployment chdir=/var/local/picky/server/takehome
+  sudo: yes
+  sudo_user: picky
+
+- name: Install systemd service
+  copy: src=picky_puma.service dest=/etc/systemd/system/picky_puma.service
+
+- name: Enable service
+  service: name=picky_puma state=restarted enabled=yes

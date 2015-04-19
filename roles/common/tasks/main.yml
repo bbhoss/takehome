@@ -1,0 +1,8 @@
+---
+- name: Add config for rsyslog forwarding to LogEntries
+  lineinfile: line="{{ item }}" state=present dest=/etc/rsyslog.conf
+  with_items:
+    - $template Logentries,\"{{ logentries_token }} %HOSTNAME% %syslogtag%%msg%\"
+    - "*.* @@data.logentries.com:514;Logentries"
+  notify:
+    - restart rsyslog

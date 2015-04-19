@@ -1,0 +1,13 @@
+---
+- hosts: all
+  vars_files:
+    - secure_vars.yml
+  roles:
+    - { role: common, tags: "common" }
+
+- hosts: picky*
+  vars_files:
+    - secure_vars.yml
+  roles:
+    - { role: common, tags: "common" }
+    - { role: picky, tags: "picky" }

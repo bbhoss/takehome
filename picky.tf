@@ -17,7 +17,7 @@ resource "aws_elb" "main-picky-elb" {
     unhealthy_threshold = 2
     timeout = 3
     target = "HTTP:8000/books?query=the"
-    interval = 10
+    interval = 30
   }
 
   instances = ["${aws_instance.picky.*.id}"]
