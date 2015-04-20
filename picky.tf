@@ -3,7 +3,6 @@ resource "aws_elb" "main-picky-elb" {
   depends_on = ["aws_internet_gateway.gw"]
   name = "main-picky-elb"
   subnets = ["${aws_subnet.main.id}"]
-  security_groups = ["${aws_security_group.default.id}"]
 
   listener {
     instance_port = 8000
@@ -29,7 +28,7 @@ resource "aws_instance" "picky" {
   ami = "ami-96a818fe"
   key_name = "${var.key_name}"
   subnet_id = "${aws_subnet.main.id}"
-  security_groups = ["${aws_security_group.default.id}"]
+  security_groups = ["${aws_security_group.picky.id}"]
   count = 2
   associate_public_ip_address = true
 }

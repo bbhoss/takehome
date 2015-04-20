@@ -13,7 +13,7 @@ resource "aws_instance" "bastion" {
   ami = "ami-96a818fe"
   key_name = "${var.key_name}"
   subnet_id = "${aws_subnet.main.id}"
-  security_groups = ["${aws_security_group.default.id}"]
+  security_groups = ["${aws_security_group.bastion.id}"]
   associate_public_ip_address = true
 
   connection {

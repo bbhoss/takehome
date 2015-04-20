@@ -24,9 +24,9 @@ resource "aws_subnet" "main" {
     cidr_block = "10.0.1.0/24"
 }
 
-resource "aws_security_group" "default" {
+resource "aws_security_group" "picky" {
     vpc_id = "${aws_vpc.main.id}"
-    name = "picky_access"
+    name = "picky_internal_access"
     description = "Used to access picky instances via HTTP and SSH"
 
     # SSH
@@ -34,7 +34,7 @@ resource "aws_security_group" "default" {
         from_port = 22
         to_port = 22
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = ["${aws_subnet.main.cidr_block}"]
     }
 
     # Picky
@@ -42,13 +42,19 @@ resource "aws_security_group" "default" {
         from_port = 8000
         to_port = 8000
         protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = ["${aws_subnet.main.cidr_block}"]
     }
+}
 
-    # HTTP
+resource "aws_security_group" "bastion" {
+    vpc_id = "${aws_vpc.main.id}"
+    name = "bastion_external_access"
+    description = "Used to access Bastion via SSH"
+
+    # SSH
     ingress {
-        from_port = 80
-        to_port = 80
+        from_port = 22
+        to_port = 22
         protocol = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
     }
