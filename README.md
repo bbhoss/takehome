@@ -37,5 +37,6 @@ a high level how do you recommend we address them?
 * TLS is not used to access the load balancer, which could be insecure depending on the search results
 * There is no authentication/authorization to the Picky server. This could easily be handled by a frontend server like nginx, or  be added to the Ruby code as a rack middleware.
 * The instances have public IP addresses assigned because I was having issues with connectivity without assigning them. This is obviously not ideal, and I'd like to fix this properly. The security groups for the picky instances is locked down to disallow public access.
+
 ## Do you have any suggestions or recommendations for this environment?
 I've made quite a few above. The biggest one is converting to an AMI-based setup. I'd like to properly add traffic and availability monitoring, as well as fixing the security issues above. Also, Ansible runs really slowly and copies the server files over each time which would be fixed by separating the code from the index data, and using git/rsync to keep things up to date.
